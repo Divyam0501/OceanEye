@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ocean Pollution AI</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>🌊 Ocean Pollution Detector</h2>
+
+    <form action="/analyze" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if image %}
+    <div class="result">
+        <h3>Analysis Result</h3>
+        <img src="{{ image }}" width="250">
+
+        <p class="
+            {% if level == 'Low Pollution' %}low
+            {% elif level == 'Medium Pollution' %}medium
+            {% else %}high
+            {% endif %}
+        ">
+            {{ level }}
+        </p>
+
+        <p>Water Quality Score: {{ score }}/100</p>
+
+        <div class="progress-bar">
+            <div class="progress" style="width: {{ score }}% !important;"></div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
